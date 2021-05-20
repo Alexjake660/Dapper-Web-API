@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DapperWebAPI.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace DapperWebAPI.Controllers
 {
@@ -13,9 +10,9 @@ namespace DapperWebAPI.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly EmployeeRepository employeeRepository;
-        public EmployeeController()
+        public EmployeeController(IConfiguration configuration)
         {
-            employeeRepository = new EmployeeRepository();
+            employeeRepository = new EmployeeRepository(configuration);
         }
 
         //Get All

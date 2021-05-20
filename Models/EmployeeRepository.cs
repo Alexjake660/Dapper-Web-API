@@ -1,19 +1,18 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace DapperWebAPI.Models
 {
     public class EmployeeRepository
     {
         private string conStr;
-        public EmployeeRepository()
+        public EmployeeRepository(IConfiguration _configuration)
         {
-            conStr = @"Server=localhost;Initial Catalog=master;User ID=sa;Password=myPassw0rd";
+            conStr = _configuration.GetConnectionString("DefaultConnection");
         }
 
         public IDbConnection Connection
